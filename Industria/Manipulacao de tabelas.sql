@@ -44,6 +44,7 @@ select * from tb_project_has_tb_fornecedor; -- ligaçãoo muitos para muito
 insert into tb_project_has_tb_fornecedor (id_project, id_fornecedor)
 values (1, 2), (2, 1), (3, 3);
 
+select * from tb_project;
 -- tabelas todas preenchidas
 
 -- Relacionando as tbl
@@ -53,7 +54,19 @@ select Func_Nome, Func_sobrenome, Func_tel, Func_Salario from tb_funcionario;
 select Func_nome, Func_sobrenome, Depert_Setor from tb_funcionario inner join tb_departamento on id_Departamento = departamento_ID;
 
 -- Peças
+select * from tb_peca;
 Select id_peca from tb_peca;
 select Peca_nome, Peca_peso, Peca_cor from tb_peca;
-select id_Project, id_peca from ligacao_proj_peca;
-select Peca_nome, fornc_Nome from ligacao_proj_peca inner join id_fornecedor on id_peca = id_fornecedor;
+select nome_projeto, Peca_nome from tb_peca inner join tb_project on Id_project = Id_peca;
+select Peca_nome, fornc_Nome from tb_peca inner join tb_fornecedor on Id_peca = Id_fornecedor;
+
+-- fornecedor
+select id_fornecedor from tb_fornecedor;
+select fornc_Nome, fornc_Endereco, id_Project from tb_fornecedor inner join tb_project on Id_fornecedor = Id_Project;
+select id_peca,Peca_nome, id_fornecedor, fornc_Nome from tb_peca inner join tb_fornecedor on Id_peca = Id_fornecedor;
+
+-- projetos
+select id_Project, nome_projeto from tb_project;
+select nome_projeto, Func_Nome, Peca_nome from tb_project inner join tb_funcionario on Id_Project = Id_Funcionario inner join tb_peca on Id_Project = Id_peca;
+select nome_projeto, Proj_Orcam from tb_project;
+select id_Project, nome_projeto, fornc_Nome from tb_project inner join tb_fornecedor on Id_Project = Id_fornecedor;
